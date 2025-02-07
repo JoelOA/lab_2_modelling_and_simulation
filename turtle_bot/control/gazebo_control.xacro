@@ -13,6 +13,9 @@
             <max_wheel_torque>200</max_wheel_torque>
             <max_wheel_acceleration>10.0</max_wheel_acceleration>
 
+            <!--Input-->
+            <topic>cmd_vel</topic>
+            
             <!--outputs-->
             <frame_id>odom</frame_id>
             <child_frame_id>base_layer</child_frame_id>

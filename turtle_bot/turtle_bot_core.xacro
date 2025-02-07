@@ -16,6 +16,7 @@
     <xacro:property name="lidar_mass" value="0.19842109046142830664"/>
 
     <xacro:property name="wheel_torque" value="20"/>
+    <xacro:property name="caster_wheel_radius" value="0.017"/>
 
     <!--BASE LAYER-->
     <link name="base_layer">
@@ -143,16 +144,22 @@
 
     <!--WHEELS-->
     <!--LEFT_WHEELS-->
-    <xacro:wheel wheel_number="1" wheel_mass="${wheel_mass}">
+    <xacro:wheel wheel_number="1" wheel_mass="${wheel_mass}" reflect="1">
         <origin xyz="0.080330040283809592272 0.0063858766431100638661 -0.01323314544227911782" rpy="-0 1.570796326794896558 0"/>
         <parent link="base_layer"/>
     </xacro:wheel>
 
     <!--RIGHT_WHEEL-->
-    <xacro:wheel wheel_number="2" wheel_mass="${wheel_mass}">
+    <xacro:wheel wheel_number="2" wheel_mass="${wheel_mass}" reflect="-1">
         <origin xyz="-0.091147230564865622249 0.0063858766431100638661 -0.01323314544227911782" rpy="-0 -1.570796326794896558 0"/>
         <parent link="base_layer"/>
     </xacro:wheel>
+
+    <!--CASTER WHEEL-->
+    <xacro:caster_wheel wheel_mass="${wheel_mass}">
+        <origin xyz="0.005405 0.03 -0.01323" rpy="0 0 0"/>
+        <parent link="base_layer"/>
+    </xacro:caster_wheel>
 
 
 </robot>

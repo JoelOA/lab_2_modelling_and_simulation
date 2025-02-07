@@ -29,6 +29,13 @@ def launch_setup(context: LaunchContext) -> list:
     pitch = LaunchConfiguration("pitch").perform(context)
     yaw = LaunchConfiguration("yaw").perform(context)
 
+    # robot state publisher
+    rsp = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([join(pkg_share, "launch", "turtle_bot.launch.py")]),
+        launch_arguments={
+            "sim_mode": "true",
+        }.items(),
+    )
     # Gazebo launch file
     world_filepath = join(pkg_share, "worlds", f"{world}.world")
     print(world_filepath)
@@ -65,7 +72,22 @@ def launch_setup(context: LaunchContext) -> list:
         output="screen",
     )
 
-    return [gazebo, spawn_entity]
+    # ROS-Gazebo bridge
+    bridge_params = join(pkg_share, "config", "gz_bridge.yaml")
+
+    ros_gz_bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=[
+            "--ros-args",
+            "-p",
+            f"config_file:={bridge_params}",
+        ],
+    )
+
+    launch_nodes = [rsp, gazebo, spawn_entity, ros_gz_bridge]
+
+    return launch_nodes
 
 def generate_launch_description() -> LaunchDescription:
 

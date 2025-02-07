@@ -17,6 +17,7 @@ endif()
 
 install(
   DIRECTORY
+    config
     rviz
     launch
     turtle_bot
