@@ -10,6 +10,7 @@
     <xacro:include filename="$(find ${TURTLE_BOT_PACKAGE_NAME})/turtle_bot/macros/wheels.xacro"/>
     <xacro:include filename="$(find ${TURTLE_BOT_PACKAGE_NAME})/turtle_bot/macros/inertial.xacro"/>
     <xacro:include filename="$(find ${TURTLE_BOT_PACKAGE_NAME})/turtle_bot/macros/standoff.xacro"/>
+
     <!--VARIABLES-->
     <xacro:property name="wheel_mass" value="0.062953359098010322481"/>
     <xacro:property name="standoff_mass" value="0.0059281210142902648896"/>

@@ -7,7 +7,7 @@
 
         <!--VARIABLES-->
         <xacro:property name="lidar_mass" value="0.19842109046142830664"/>
-        <xacro:property name="lidar_sensor_origin" value="35.5945"/>
+        <xacro:property name="lidar_sensor_origin" value="0.0298"/>
 
         <joint name="lidar_base_1" type="fixed">
             <origin xyz="-0.050052038200428278225 -0.0049479617995717289913 0" rpy="3.141592653589793116 -1.232595164407830946e-32 -1.570796326794896558" />
@@ -39,8 +39,8 @@
             </xacro:lidar_inertial>
         </link>
 
-        <gazebo reference="lidar_frame">
-            <sensor name="rplidar_a1" type="ray">
+        <gazebo reference="lidar">
+            <sensor name="rplidar_a1" type="gpu_lidar">
                 <pose>0 0 ${lidar_sensor_origin} 0 0 0</pose>
                 <always_on>true</always_on>
                 <visualize>true</visualize>
@@ -50,8 +50,8 @@
                         <horizontal>
                             <samples>5000</samples>
                             <resolution>1</resolution>
-                            <min_angle>-${PI}</min_angle>
-                            <max_angle>${PI}</max_angle>
+                            <min_angle>-3.14</min_angle>
+                            <max_angle>3.14</max_angle>
                         </horizontal>
                     </scan>
                     <range>
@@ -66,7 +66,7 @@
                     </noise>
                 </lidar>
                 <topic>scan</topic>
-                <gz_frame_id>laser_frame</gz_frame_id>
+                <gz_frame_id>lidar</gz_frame_id>
             </sensor>
         </gazebo>
     </xacro:macro>
